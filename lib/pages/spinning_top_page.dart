@@ -15,7 +15,7 @@ class SpinningTopPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/spinning.jpeg',
               width: double.infinity,
               fit: BoxFit.contain,
             ),

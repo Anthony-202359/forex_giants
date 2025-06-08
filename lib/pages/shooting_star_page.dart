@@ -19,7 +19,7 @@ class ShootingStarPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/shooting.jpeg',
               height: 200,
               width: double.infinity,
               fit: BoxFit.contain,

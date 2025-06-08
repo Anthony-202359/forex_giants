@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19853854916",
+    "project_id": "forex-giants-d1b18",
+    "storage_bucket": "forex-giants-d1b18.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19853854916:android:4d3122025b7551ec5b6191",
+        "android_client_info": {
+          "package_name": "com.example.forex_giants"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBygdPay2Ss626A2ZtLFVrhA8a9ByP7bcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

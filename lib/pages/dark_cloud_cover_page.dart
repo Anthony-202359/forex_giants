@@ -19,7 +19,7 @@ class DarkCloudCoverPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/dark.jpeg',
               height: 200,
               width: double.infinity,
               fit: BoxFit.contain,

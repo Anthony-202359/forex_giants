@@ -36,7 +36,7 @@ class SupportResistancePage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/support.jpeg',
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 20),
@@ -51,7 +51,7 @@ class SupportResistancePage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/sandr.jpeg',
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 20),
@@ -69,7 +69,7 @@ class SupportResistancePage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/resistance.jpeg',
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 20),
@@ -82,6 +82,37 @@ class SupportResistancePage extends StatelessWidget {
               '- Support can become resistance and vice versa.\n'
                   '- Watch for false breakouts.\n'
                   '- Use confirmation from price action (e.g., candlestick patterns).',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 30),
+
+            // Breakout Section
+            const Text(
+              'Breakout and False Breakout',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+
+            // Breakout Image First
+            Image.asset(
+              'assets/images/break.jpeg',
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'A breakout occurs when the price moves above a resistance level or below a support level with strong momentum, indicating a potential continuation of the trend.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+
+            // False Breakout Image First
+            Image.asset(
+              'assets/images/false.jpeg',
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'A false breakout happens when the price temporarily breaks through a support or resistance level but then quickly reverses, trapping traders who acted on the breakout.',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 30),

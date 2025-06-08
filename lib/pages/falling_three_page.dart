@@ -15,7 +15,7 @@ class FallingThreePage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/falling.jpeg',
               width: double.infinity,
               fit: BoxFit.contain,
             ),

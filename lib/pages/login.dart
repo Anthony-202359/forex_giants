@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,21 +21,23 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _login() {
+  Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Logging in...')),
-      );
-
-      // Simulate login and redirect
-      Navigator.pushReplacementNamed(context, '/home');
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login successful!')),
+        );
+        Navigator.pushReplacementNamed(context, '/home');
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
+      }
     }
-  }
-
-  void _loginWithGoogle() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Google login coming soon...')),
-    );
   }
 
   @override
@@ -54,9 +57,8 @@ class _LoginPageState extends State<LoginPage> {
                   labelText: 'Email Address',
                   border: OutlineInputBorder(),
                 ),
-                validator: (value) => value == null || !value.contains('@')
-                    ? 'Enter a valid email'
-                    : null,
+                validator: (value) =>
+                value == null || !value.contains('@') ? 'Enter a valid email' : null,
               ),
               const SizedBox(height: 20),
               TextFormField(
@@ -67,17 +69,13 @@ class _LoginPageState extends State<LoginPage> {
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                      _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                     ),
-                    onPressed: () =>
-                        setState(() => _isPasswordVisible = !_isPasswordVisible),
+                    onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
                   ),
                 ),
-                validator: (value) => value == null || value.length < 6
-                    ? 'Enter at least 6 characters'
-                    : null,
+                validator: (value) =>
+                value == null || value.length < 6 ? 'Enter at least 6 characters' : null,
               ),
               const SizedBox(height: 10),
               Align(
@@ -98,35 +96,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent, // Light red color
+                    backgroundColor: Colors.redAccent, // Red button
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: const Text('Login'),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text('Or login with', style: TextStyle(color: Colors.grey)),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: _loginWithGoogle,
-                  icon: Image.asset('assets/images/google_logo.jpg', height: 20),
-                  label: const Text('Continue with Google'),
-                ),
-              ),
-              const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Don't have an account?"),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/signup');
-                    },
-                    child: const Text('Sign Up'),
-                  ),
-                ],
               ),
             ],
           ),

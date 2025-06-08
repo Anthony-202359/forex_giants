@@ -15,7 +15,7 @@ class DojiPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/doji.jpeg',
               width: double.infinity,
               fit: BoxFit.contain,
             ),

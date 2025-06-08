@@ -19,7 +19,7 @@ class BearishEngulfingPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/bearish.jpeg',
               height: 200,
               width: double.infinity,
               fit: BoxFit.contain,

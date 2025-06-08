@@ -19,7 +19,7 @@ class PiercingLinePage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/forex.jpeg',
+              'assets/images/pline.jpeg',
               height: 200,
               width: double.infinity,
               fit: BoxFit.contain,

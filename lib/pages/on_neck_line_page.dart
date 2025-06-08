@@ -15,7 +15,7 @@ class OnNeckLinePage extends StatelessWidget {
         child: Column(
           children: const [
             Image(
-              image: AssetImage('assets/images/forex.jpeg'),
+              image: AssetImage('assets/images/thrusting.jpeg'),
             ),
             SizedBox(height: 16),
             Text(
