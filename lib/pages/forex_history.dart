@@ -17,87 +17,100 @@ class ForexHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Forex Basics for Beginners'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        title: const Text(''),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          _buildConceptCard(
-            context: context,
-            title: "1. What is Forex Trading?",
-            icon: Icons.help_outline,
-            color: Colors.blue,
-            page: const WhatIsForexPage(),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFe96443), Color(0xFF904e95)],
           ),
-          _buildConceptCard(
-            context: context,
-            title: "2. Understanding Currency Pairs",
-            icon: Icons.currency_exchange,
-            color: Colors.green,
-            page: const CurrencyPairsPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "3. Pips and Spreads",
-            icon: Icons.trending_up,
-            color: Colors.purple,
-            page: const PipsSpreadsPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "4. Leverage and Margin (Risk!)",
-            icon: Icons.warning,
-            color: Colors.red,  // Red for risk concepts
-            page: const LeverageMarginPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "5. Going Long vs. Short",
-            icon: Icons.compare_arrows,
-            color: Colors.orange,
-            page: const LongShortPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "6. Forex Market Hours",
-            icon: Icons.access_time,
-            color: Colors.teal,
-            page: const MarketHoursPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "7. Fundamental Analysis",
-            icon: Icons.assessment,
-            color: Colors.indigo,
-            page: const FundamentalAnalysisPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "8. Technical Analysis",
-            icon: Icons.insert_chart,
-            color: Colors.blueAccent,
-            page: const TechnicalAnalysisPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "9. Risk Management (Critical!)",
-            icon: Icons.security,
-            color: Colors.red,  // Red for risk concepts
-            page: const RiskManagementPage(),
-          ),
-          _buildConceptCard(
-            context: context,
-            title: "10. Trading Psychology",
-            icon: Icons.psychology,
-            color: Colors.deepPurple,
-            page: const TradingPsychologyPage(),
-          ),
-        ],
+        ),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 100, 16, 24),
+          children: [
+            const SizedBox(height: 32),
+            _buildConceptCard(
+              context: context,
+              title: "1. What is Forex Trading?",
+              icon: Icons.help_outline,
+              color: Colors.blue,
+              page: const WhatIsForexPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "2. Understanding Currency Pairs",
+              icon: Icons.currency_exchange,
+              color: Colors.green,
+              page: const CurrencyPairsPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "3. Pips and Spreads",
+              icon: Icons.trending_up,
+              color: Colors.purple,
+              page: const PipsSpreadsPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "4. Leverage and Margin (Risk!)",
+              icon: Icons.warning,
+              color: Colors.red,  // Red for risk concepts
+              page: const LeverageMarginPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "5. Going Long vs. Short",
+              icon: Icons.compare_arrows,
+              color: Colors.orange,
+              page: const LongShortPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "6. Forex Market Hours",
+              icon: Icons.access_time,
+              color: Colors.teal,
+              page: const MarketHoursPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "7. Fundamental Analysis",
+              icon: Icons.assessment,
+              color: Colors.indigo,
+              page: const FundamentalAnalysisPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "8. Technical Analysis",
+              icon: Icons.insert_chart,
+              color: Colors.blueAccent,
+              page: const TechnicalAnalysisPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "9. Risk Management (Critical!)",
+              icon: Icons.security,
+              color: Colors.red,  // Red for risk concepts
+              page: const RiskManagementPage(),
+            ),
+            _buildConceptCard(
+              context: context,
+              title: "10. Trading Psychology",
+              icon: Icons.psychology,
+              color: Colors.deepPurple,
+              page: const TradingPsychologyPage(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -110,33 +123,38 @@ class ForexHistoryPage extends StatelessWidget {
     required Widget page,
   }) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      elevation: 3,
+      color: const Color(0xFFF3E8FF),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(28),
+        side: BorderSide(color: Colors.deepPurple.withOpacity(0.08), width: 1.5),
       ),
+      elevation: 12,
+      margin: const EdgeInsets.only(bottom: 24),
+      shadowColor: Colors.deepPurple.withOpacity(0.10),
       child: InkWell(
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => page),
         ),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(28),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: color, size: 32),
-              const SizedBox(width: 16),
+              Icon(icon, color: color, size: 40),
+              const SizedBox(width: 24),
               Expanded(
                 child: Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              const Icon(Icons.arrow_forward_ios, size: 16),
+              const Icon(Icons.arrow_forward_ios, size: 22, color: Colors.deepPurple),
             ],
           ),
         ),

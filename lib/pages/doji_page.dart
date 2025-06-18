@@ -6,64 +6,93 @@ class DojiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Doji Pattern'),
-        backgroundColor: Colors.grey[800],
+        title: const Text(''),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFe96443), Color(0xFF904e95)],
+          ),
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/doji.jpeg',
-              width: double.infinity,
-              fit: BoxFit.contain,
-            ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 100),
             Text(
-              'Doji Candlestick',
+              'Doji Pattern',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.grey[800],
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 8,
+                    color: Colors.black26,
+                    offset: Offset(0, 2),
+                  ),
+                ],
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'A Doji occurs when the opening and closing prices are virtually equal:',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 12),
-            _buildFeature('Perfect Doji', 'Open = Close (exactly equal)'),
-            _buildFeature('Standard Doji', 'Open ≈ Close (nearly equal)'),
-            _buildFeature('Long-Legged Doji', 'Long upper and lower shadows'),
-            const SizedBox(height: 20),
-            Text(
-              'Market Significance:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.red[400],
+            const SizedBox(height: 32),
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Card(
+                    color: const Color(0xFFF3E8FF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(28),
+                      side: BorderSide(color: Colors.deepPurple.withOpacity(0.08), width: 1.5),
+                    ),
+                    elevation: 12,
+                    margin: EdgeInsets.zero,
+                    shadowColor: Colors.deepPurple.withOpacity(0.10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 22),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              'assets/images/doji.jpeg',
+                              fit: BoxFit.cover,
+                              height: 180,
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          const Text(
+                            'A Doji is a candlestick pattern that signals indecision in the market. It has the following characteristics:',
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 18),
+                          _feature('Open and close prices are virtually equal'),
+                          _feature('Small or no real body'),
+                          _feature('Long upper and lower shadows'),
+                          _feature('Indicates market indecision'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Dojis represent indecision in the market. After a strong trend, a Doji suggests '
-                  'the trend may be losing momentum and a reversal could occur. The longer the shadows, '
-                  'the more significant the indecision.',
-            ),
-            const SizedBox(height: 20),
-            _buildTradingTip(
-              'At market tops: Potential bearish reversal signal',
-              Colors.red,
-            ),
-            _buildTradingTip(
-              'At market bottoms: Potential bullish reversal signal',
-              Colors.green,
-            ),
-            _buildTradingTip(
-              'During trends: May indicate continuation pause',
-              Colors.blue,
             ),
           ],
         ),
@@ -71,40 +100,21 @@ class DojiPage extends StatelessWidget {
     );
   }
 
-  Widget _buildFeature(String title, String description) {
+  Widget _feature(String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.circle, size: 8, color: Colors.red[400]),
-          const SizedBox(width: 8),
+          const Icon(Icons.check_circle, color: Colors.green, size: 22),
+          const SizedBox(width: 10),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(description),
-              ],
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildTradingTip(String text, Color color) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border(left: BorderSide(color: color, width: 4)),
-        color: color.withOpacity(0.1),
-      ),
-      child: Text(text),
     );
   }
 }

@@ -9,62 +9,99 @@ class CandlestickBasicsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Candlestick Patterns'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        title: const Text(''),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          _PatternCard(
-            title: "Bullish Continuation",
-            icon: Icons.trending_up,
-            color: Colors.green,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => BullishContinuationPage()),
-            ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFe96443), Color(0xFF904e95)],
           ),
-          _PatternCard(
-            title: "Bearish Continuation",
-            icon: Icons.trending_down,
-            color: Colors.red,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => BearishContinuationPage()),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100),
+            Text(
+              'Candlestick Patterns',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 8,
+                    color: Colors.black26,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          _PatternCard(
-            title: "Indecision Candlesticks",
-            icon: Icons.compare_arrows,
-            color: Colors.grey,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => IndecisionCandlesticksPage()),
+            const SizedBox(height: 32),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                children: [
+                  _PatternCard(
+                    title: "Bullish Continuation",
+                    icon: Icons.trending_up,
+                    color: Colors.green,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BullishContinuationPage()),
+                    ),
+                  ),
+                  _PatternCard(
+                    title: "Bearish Continuation",
+                    icon: Icons.trending_down,
+                    color: Colors.red,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BearishContinuationPage()),
+                    ),
+                  ),
+                  _PatternCard(
+                    title: "Indecision Candlesticks",
+                    icon: Icons.compare_arrows,
+                    color: Colors.grey,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => IndecisionCandlesticksPage()),
+                    ),
+                  ),
+                  _PatternCard(
+                    title: "Top Candlesticks",
+                    icon: Icons.warning,
+                    color: Colors.red,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TopCandlesticksPage()),
+                    ),
+                  ),
+                  _PatternCard(
+                    title: "Bottom Candlesticks",
+                    icon: Icons.warning,
+                    color: Colors.green,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BottomCandlesticksPage()),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          _PatternCard(
-            title: "Top Candlesticks",
-            icon: Icons.warning,
-            color: Colors.red,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TopCandlesticksPage()),
-            ),
-          ),
-          _PatternCard(
-            title: "Bottom Candlesticks",
-            icon: Icons.warning,
-            color: Colors.green,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => BottomCandlesticksPage()),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -86,23 +123,30 @@ class _PatternCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 20),
+      color: const Color(0xFFF3E8FF),
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+        side: BorderSide(color: Colors.deepPurple.withOpacity(0.08), width: 1.5),
+      ),
+      shadowColor: Colors.deepPurple.withOpacity(0.10),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(24),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
           child: Row(
             children: [
-              Icon(icon, color: color, size: 32),
-              SizedBox(width: 16),
+              Icon(icon, color: color, size: 36),
+              const SizedBox(width: 20),
               Expanded(
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 16),
+              const Icon(Icons.arrow_forward_ios, size: 22, color: Colors.deepPurple),
             ],
           ),
         ),

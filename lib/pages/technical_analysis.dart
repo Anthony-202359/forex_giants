@@ -126,60 +126,91 @@ class TechnicalAnalysisPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Technical Analysis'),
-        backgroundColor: Colors.red,
-        elevation: 0,
+        title: const Text(''),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFF5F5F5),
-              Color(0xFFE0E0E0),
-            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFe96443), Color(0xFF904e95)],
           ),
         ),
-        child: ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: indicators.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 8),
-          itemBuilder: (context, index) {
-            return Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: ListTile(
-                leading: Icon(
-                  indicators[index]['icon'] as IconData? ?? Icons.help_outline,
-                  color: Colors.red,
-                ),
-                title: Text(
-                  indicators[index]['title'],
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100),
+            Text(
+              'Technical Analysis',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 8,
+                    color: Colors.black26,
+                    offset: Offset(0, 2),
                   ),
-                ),
-                trailing: const Icon(
-                  Icons.chevron_right,
-                  color: Colors.red,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                onTap: () => _navigateTo(
-                  context,
-                  indicators[index]['page'] as Widget,
-                ),
+                ],
               ),
-            );
-          },
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 32),
+            Expanded(
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                itemCount: indicators.length,
+                separatorBuilder: (context, index) => const SizedBox(height: 16),
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: const Color(0xFFF3E8FF),
+                    elevation: 8,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                      side: BorderSide(color: Colors.deepPurple.withOpacity(0.08), width: 1.5),
+                    ),
+                    shadowColor: Colors.deepPurple.withOpacity(0.10),
+                    child: ListTile(
+                      leading: Icon(
+                        indicators[index]['icon'] as IconData? ?? Icons.help_outline,
+                        color: Colors.deepPurple,
+                        size: 32,
+                      ),
+                      title: Text(
+                        indicators[index]['title'],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      trailing: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.deepPurple,
+                        size: 28,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 16,
+                      ),
+                      onTap: () => _navigateTo(
+                        context,
+                        indicators[index]['page'] as Widget,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
